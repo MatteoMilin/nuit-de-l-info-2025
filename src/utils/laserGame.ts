@@ -1,3 +1,5 @@
+import gunCursor from '../assets/gun.png';
+
 let isLaserGameActive = false;
 let score = 0;
 let scoreDisplay: HTMLDivElement | null = null;
@@ -10,6 +12,15 @@ export const activateLaserGame = () => {
 
   isLaserGameActive = true;
   score = 0;
+
+  const style = document.createElement('style');
+  style.id = 'laser-game-cursor';
+  style.textContent = `
+    * {
+      cursor: url('${gunCursor}') 16 16, crosshair !important;
+      }
+      `;
+  document.head.appendChild(style);
 
   scoreDisplay = document.createElement('div');
   scoreDisplay.id = 'laser-game-score';
@@ -57,6 +68,37 @@ export const activateLaserGame = () => {
     const handleClick = (e: MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
+
+      const muzzleFlash = document.createElement('div');
+      muzzleFlash.style.position = 'fixed';
+      muzzleFlash.style.left = `${e.clientX}px`;
+      muzzleFlash.style.top = `${e.clientY}px`;
+      muzzleFlash.style.width = '40px';
+      muzzleFlash.style.height = '40px';
+      muzzleFlash.style.borderRadius = '50%';
+      muzzleFlash.style.background =
+        'radial-gradient(circle, #ffff00 0%, #ff6600 40%, #ff0000 70%, transparent 100%)';
+      muzzleFlash.style.transform = 'translate(-50%, -50%)';
+      muzzleFlash.style.pointerEvents = 'none';
+      muzzleFlash.style.zIndex = '99998';
+      muzzleFlash.style.boxShadow = '0 0 20px #ffff00, 0 0 40px #ff6600';
+      document.body.appendChild(muzzleFlash);
+
+      let opacity = 1;
+      let scale = 1;
+      const animate = () => {
+        opacity -= 0.1;
+        scale += 0.3;
+        muzzleFlash.style.opacity = opacity.toString();
+        muzzleFlash.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+        if (opacity > 0) {
+          requestAnimationFrame(animate);
+        } else {
+          muzzleFlash.remove();
+        }
+      };
+      requestAnimationFrame(animate);
 
       if (shootSound) {
         shootSound.currentTime = 0;
