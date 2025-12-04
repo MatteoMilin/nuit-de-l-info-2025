@@ -1,0 +1,26 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  color: #fff;
+  text-shadow: 0 0 5px #00f0ff;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff;
+}
+
+.text {
+  font-size: 22px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.li {
+  margin: 12px 0;
+  font-size: 22px;
+  line-height: 1.8;
+}
