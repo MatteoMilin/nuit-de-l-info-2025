@@ -311,7 +311,7 @@ export const MusicalLogin = () => {
                             onChange={(e) => handleUsernameChange(e.target.value)}
                             placeholder='Pseudo'
                             autoComplete='username'
-                            className='w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-200'
+                            className='w-full rounded-none border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-200'
                         />
                     </div>
                     <div className='flex flex-col gap-4'>
@@ -328,7 +328,7 @@ export const MusicalLogin = () => {
                             onChange={(e) => handleEmailChange(e.target.value)}
                             placeholder='exemple@domain.tld'
                             autoComplete='email'
-                            className='w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-200'
+                            className='w-full rounded-none border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-200'
                         />
                     </div>
 
@@ -339,11 +339,11 @@ export const MusicalLogin = () => {
                         <button
                             type='button'
                             onClick={playSuccessSound}
-                            className='self-start rounded-lg border border-slate-900 bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300'
+                            className='self-start rounded-none border border-slate-900 bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300'
                         >
                             Indice mot de passe (écouter la mélodie)
                         </button>
-                        <div className='min-h-[72px] rounded-xl border border-slate-200 bg-slate-50 px-4 py-5'>
+                        <div className='min-h-[72px] border border-slate-200 bg-slate-50 px-4 py-5'>
                             {userSequence.length === 0 ? (
                                 <p className='text-center text-sm text-slate-500'>
                                     Joue ta mélodie sur le piano pour remplir ton mot de passe.
@@ -377,7 +377,7 @@ export const MusicalLogin = () => {
                             type='button'
                             onClick={checkSequence}
                             disabled={!canValidate}
-                            className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors sm:flex-none sm:px-6 ${canValidate ? 'bg-sky-600 hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300' : 'bg-slate-300 text-slate-500 cursor-not-allowed'}`}
+                            className={`flex-1 rounded-none px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors sm:flex-none sm:px-6 ${canValidate ? 'bg-sky-600 hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300' : 'bg-slate-300 text-slate-500 cursor-not-allowed'}`}
                         >
                             Valider
                         </button>
