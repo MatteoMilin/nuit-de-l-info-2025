@@ -31,6 +31,9 @@ Nous avons créé plusieurs défis pour rendre l'expérience interactive et amus
 4. **Login complexe avec Captcha**  
    Pour renforcer la sécurité, le login comprend un **captcha ludique**, qui utilisé le résultat d’un combat **Clash Royale**.  
 
+Pour des objectifs de test, les pages sont toutes disponibles aux liens suivants : /login, /home, /snake, /about, /become
+Cependant si vous souhaitez empêcher ces accès, une version du code commentée permet de le faire.
+
 ## Installation
 
 1. Clonez le dépôt :  
