@@ -41,6 +41,17 @@ body {
   font-family: 'Minecraft', sans-serif;
 }
 
+.body2 {
+  display: block;
+  place-items: initial;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Minecraft', sans-serif;
+  background-color: #ffffff;
+  color: #213547;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/Header';
 import { HomePage } from './pages/Home';
+import { MusicalLogin } from './pages/MusicalLogin';
 import { AboutPage } from './pages/About';
 import { BecomePage } from './pages/Become';
 import Snake from './snake/Snake';
@@ -11,7 +12,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route index element={<HomePage />} />
+        <Route index element={<MusicalLogin />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path='/snake' element={<Snake />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/become" element={<BecomePage />} />
