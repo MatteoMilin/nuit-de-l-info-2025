@@ -9,12 +9,11 @@ export function BecomePage() {
       transformTextNode(el);
     });
 
-    function transformTextNode(element) {
+    function transformTextNode(element: Node) {
       const walker = document.createTreeWalker(
         element,
         NodeFilter.SHOW_TEXT,
-        null,
-        false
+        null
       );
 
       const textNodes = [];
@@ -26,7 +25,10 @@ export function BecomePage() {
 
       textNodes.forEach((textNode) => {
         const text = textNode.textContent;
-        if (!text.includes('s')) return;
+        if (!text)
+          return;
+        if (!text.includes('s'))
+          return;
 
         const fragment = document.createDocumentFragment();
         const parts = text.split(/(s)/g);
@@ -44,7 +46,9 @@ export function BecomePage() {
           }
         });
 
-        textNode.parentNode.replaceChild(fragment, textNode);
+        if (textNode.parentNode) {
+          textNode.parentNode.replaceChild(fragment, textNode);
+        }
       });
     }
   }, []);

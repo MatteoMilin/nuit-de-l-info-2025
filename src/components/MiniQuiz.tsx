@@ -18,7 +18,7 @@ export const MiniQuiz = () => {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
 
-  const handleAnswer = (option) => {
+  const handleAnswer = (option: string) => {
     if (option === questions[currentIndex].answer) setScore(score + 1);
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(currentIndex + 1);

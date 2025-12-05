@@ -15,6 +15,7 @@ interface ChallengeDeckResponse {
   playerTag: string;
   challengeDeck: Card[];
   message?: string;
+  error?: string;
 }
 
 interface ClashRoyaleDeckCaptchaProps {

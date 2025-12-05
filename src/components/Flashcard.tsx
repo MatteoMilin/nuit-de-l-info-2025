@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
-const Flashcard = ({ question, answer }) => {
+interface FlashcardProps {
+  question: string;
+  answer: string;
+}
+
+const Flashcard = ({ question, answer }: FlashcardProps) => {
   const [showAnswer, setShowAnswer] = useState(false);
 
   return (
