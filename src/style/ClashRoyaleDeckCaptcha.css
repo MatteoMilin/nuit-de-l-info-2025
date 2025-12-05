@@ -1,0 +1,347 @@
+:root {
+  --bg-primary: #05060f;
+  --bg-secondary: #111433;
+  --accent-purple: #8c5bff;
+  --accent-cyan: #4ef0e1;
+  --accent-pink: #ff6ec7;
+  --text-primary: #f5f5ff;
+  --text-muted: #a2a5c2;
+  --card-border: rgba(255, 255, 255, 0.12);
+  --glass: rgba(10, 12, 32, 0.75);
+}
+
+.clash-deck-captcha-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: radial-gradient(circle at 20% -10%, rgba(255, 110, 199, 0.25), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(78, 240, 225, 0.25), transparent 45%),
+    linear-gradient(135deg, #05060f 0%, #151937 60%, #070913 100%);
+  image-rendering: pixelated;
+}
+
+.clash-deck-captcha-card {
+    width: min(760px, 100%);
+    border-radius: 0;
+    padding: 40px;
+    background: var(--glass);
+    border: 1px solid var(--card-border);
+    box-shadow: none;
+    color: var(--text-primary);
+    animation: elevate 0.6s steps(1) ease-out;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes elevate {
+  from {
+    opacity: 0;
+    transform: translateY(2px) scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.clash-deck-captcha-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.clash-deck-captcha-header h2 {
+  font-size: 36px;
+  margin: 0;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+}
+
+.clash-deck-captcha-header p {
+  margin: 10px 0 0 0;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.clash-deck-captcha-instructions {
+  border-radius: 0px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  background: linear-gradient(120deg, rgba(140, 91, 255, 0.15), rgba(78, 240, 225, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.clash-deck-captcha-instructions.challenge {
+  background: linear-gradient(120deg, rgba(255, 110, 199, 0.2), rgba(140, 91, 255, 0.12));
+}
+
+.clash-deck-captcha-instructions ol {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.clash-deck-captcha-instructions li {
+  margin: 4px 0;
+}
+
+.clash-deck-player-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 24px;
+}
+
+.clash-deck-player-info h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.clash-deck-player-info p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.clash-deck-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.clash-deck-card {
+  position: relative;
+  border-radius: 0px;
+  padding: 18px 14px 16px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(14px);
+  transition: transform 0.2s ease, border 0.2s ease;
+}
+
+.clash-deck-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.clash-deck-card img {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+}
+
+.clash-deck-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-details {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.card-level {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.card-rarity {
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.rarity-common .card-rarity {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.rarity-rare .card-rarity {
+  background: rgba(140, 91, 255, 0.2);
+  color: var(--accent-purple);
+}
+
+.rarity-epic .card-rarity {
+  background: rgba(255, 110, 199, 0.2);
+  color: var(--accent-pink);
+}
+
+.rarity-legendary .card-rarity {
+  background: rgba(255, 214, 122, 0.25);
+  color: #ffd77a;
+}
+
+.rarity-champion .card-rarity {
+  background: rgba(78, 240, 225, 0.2);
+  color: var(--accent-cyan);
+}
+
+.clash-deck-captcha-input-group {
+  margin-bottom: 20px;
+}
+
+.clash-deck-captcha-input-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.clash-deck-captcha-hint {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.clash-deck-captcha-input {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(7, 8, 20, 0.8);
+  color: var(--text-primary);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clash-deck-captcha-input:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(140, 91, 255, 0.25);
+}
+
+.clash-deck-captcha-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.clash-deck-captcha-message {
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.clash-deck-captcha-message.error {
+  background: rgba(255, 99, 132, 0.1);
+  border: 1px solid rgba(255, 99, 132, 0.4);
+  color: #ff7b99;
+}
+
+.clash-deck-captcha-message.success {
+  background: rgba(78, 240, 225, 0.12);
+  border: 1px solid rgba(78, 240, 225, 0.5);
+  color: var(--accent-cyan);
+}
+
+.clash-deck-captcha-button {
+  width: 100%;
+  padding: 16px 26px;
+  border-radius: 0px;
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+  color: #05060f;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clash-deck-captcha-button.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.clash-deck-captcha-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+.clash-deck-captcha-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.clash-deck-button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.spinner {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top: 2px solid #05060f;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.clash-deck-captcha-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.clash-deck-captcha-footer a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.clash-deck-captcha-footer a:hover {
+  text-decoration: underline;
+}
