@@ -11,7 +11,7 @@ export default function Snake() {
   const [food, setFood] = useState<Position>([3, 3]);
   const [direction, setDirection] = useState<Position>([0, 1]);
   const [nextDirection, setNextDirection] = useState<Position>([0, 1]);
-  const [gameOver, setGameOver] = useState<boolean>(false);
+  const [gameOver, setGameOver] = useState<boolean>(true);
   const [score, setScore] = useState<number>(0);
   const [directionChanged, setDirectionChanged] = useState<boolean>(false);
 
@@ -124,11 +124,11 @@ export default function Snake() {
   };
 
   const styles: Record<string, React.CSSProperties> = {
-    container: { fontFamily: '"Courier New", monospace' },
+    container: { fontFamily: '"Minecraft", sans-serif'},
     header: {
       background: '#000',
       boxShadow:
-        '0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1)',
+        '0 0 20px rgba(0, 0, 255, 0.8), inset 0 0 20px rgba(0, 0, 255, 0.1)',
       borderRadius: 0,
     },
     title: { color: '#0f0', textShadow: '0 0 10px #0f0' },
@@ -154,10 +154,9 @@ export default function Snake() {
     },
     head: {
       background: '#0f0',
-      boxShadow: '0 0 12px #0f0, inset 0 0 8px #0f0',
       borderRadius: 0,
     },
-    body: { background: '#0a0', boxShadow: '0 0 5px #0a0', borderRadius: 0 },
+    body: { background: '#0a0', borderRadius: 0 },
     food: {
       background: '#f00',
       boxShadow: '0 0 12px #f00, inset 0 0 8px #f00',
@@ -168,9 +167,9 @@ export default function Snake() {
   };
 
   const cellStyles: Record<CellType, string> = {
-    head: 'border-green-300 animate-pulse',
+    head: 'border-green-400',
     body: 'border-green-700',
-    food: 'border-red-400 animate-pulse',
+    food: 'border-red-400',
     empty: 'border-gray-900',
   };
 
@@ -180,39 +179,35 @@ export default function Snake() {
       style={styles.container}
     >
       <div
-        className='mb-2 text-center border-4 border-green-500 p-2'
+        className='mb-2 text-center border-4 border-blue-500 p-6'
         style={styles.header}
       >
-        <h1
-          className='text-3xl font-bold mb-1 tracking-widest'
-          style={styles.title}
+        <h3
+          className='text-6xl text-white font-bold mb-1 tracking-widest'
         >
-          ▓▒░ SNAKE ░▒▓
-        </h1>
-        <div className='text-lg font-bold mb-1' style={styles.title}>
+          ▓▒░ SNAKE ░▒▓ 
+        </h3>
+        <div className='text-lg text-blue-500 font-bold mb-1'>
           ═══════════════════
         </div>
-        <div className='text-base font-bold' style={styles.score}>
+        <div className='text-base text-xl text-white font-bold'>
           SCORE: {score.toString().padStart(5, '0')}
         </div>
 
         {gameOver && (
           <div
-            className='mt-2 border-4 border-red-500 p-2'
-            style={styles.gameOverBox}
+            className='mt-2 p-2'
           >
             <p
-              className='text-xl font-bold mb-2 animate-pulse'
-              style={styles.gameOverText}
+              className='text-xl font-bold mb-2 animate-pulse text-red-600'
             >
-              ╔══════════════╗
+              ╔══════════╗
               <br />║ GAME OVER ║<br />
-              ╚══════════════╝
+              ╚══════════╝
             </p>
             <button
               onClick={resetGame}
-              className='font-bold py-1 px-4 border-2 tracking-wider rounded-none text-sm'
-              style={styles.button}
+              className='font-bold py-1 px-4 bg-blue-500 border-2 rounded-none text-sm'
             >
               ► INSERT COIN ◄
             </button>
@@ -220,13 +215,13 @@ export default function Snake() {
         )}
 
         {!gameOver && (
-          <div className='mt-1' style={{ color: '#0a0' }}>
-            <p className='text-xs tracking-wide'>▲ ▼ ◄ ► ARROW KEYS TO MOVE</p>
+          <div className='mt-1 text-blue-500'>
+            <p className='text-md tracking-wide'>▲ ▼ ◄ ► ARROW KEYS TO MOVE</p>
           </div>
         )}
       </div>
 
-      <div className='p-2 border-4 border-green-500' style={styles.board}>
+      <div className='p-2 border-4 border-blue-500'>
         {Array.from({ length: SIZE }).map((_, row) => (
           <div key={row} className='flex'>
             {Array.from({ length: SIZE }).map((_, col) => {
@@ -241,12 +236,6 @@ export default function Snake() {
             })}
           </div>
         ))}
-      </div>
-
-      <div className='mt-2 text-xs tracking-widest' style={styles.footer}>
-        ┌───────────────────────┐
-        <br />│ ©1976 ARCADE SYSTEMS │<br />
-        └───────────────────────┘
       </div>
     </div>
   );
