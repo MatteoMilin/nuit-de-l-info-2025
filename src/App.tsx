@@ -23,51 +23,11 @@ function App() {
         <Routes>
           <Route index element={<ClashRoyalePage />} />
 
-          <Route
-            path='/login'
-            element={
-              <ProtectedRoute>
-                <Header />
-                <MusicalLogin />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/home'
-            element={
-              <ProtectedRoute>
-                <Header />
-                <HomePage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/snake'
-            element={
-              <ProtectedRoute>
-                <Header />
-                <Snake />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/about'
-            element={
-              <ProtectedRoute>
-                <Header />
-                <AboutPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/become'
-            element={
-              <ProtectedRoute>
-                <Header />
-                <BecomePage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/login" element={<><Header /><MusicalLogin /></>} />
+          <Route path="/home" element={<><Header /><HomePage /></>} />
+          <Route path="/snake" element={<><Header /><Snake /></>} />
+          <Route path="/about" element={<><Header /><AboutPage /></>} />
+          <Route path="/become" element={<><Header /><BecomePage /></>} />
         </Routes>
       </BrowserRouter>
     </CaptchaProvider>

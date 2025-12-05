@@ -5,7 +5,7 @@ const Flashcard = ({ question, answer }) => {
 
   return (
     <div className='flashcard' onClick={() => setShowAnswer(!showAnswer)}>
-      {showAnswer ? <p className='answer'>{answer}</p> : <p className='question'>{question}</p>}
+      {showAnswer ? <p className='answer'>{answer}</p> : <p className='question'><strong>{question}</strong></p>}
     </div>
   );
 };

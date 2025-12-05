@@ -19,9 +19,9 @@ body {
 
 .success-screen {
   background: rgba(10, 12, 32, 0.8);
-  border-radius: 28px;
+  border-radius: 1px;
   padding: 48px;
-  max-width: 520px;
+  max-width: 620px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
@@ -59,7 +59,7 @@ body {
   background: linear-gradient(135deg, #8c5bff, #4ef0e1);
   color: #05060f;
   border: none;
-  border-radius: 18px;
+  border-radius: 1px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;

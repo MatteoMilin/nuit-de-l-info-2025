@@ -38,7 +38,7 @@ export const MiniQuiz = () => {
 
   return (
     <div className='mini-quiz'>
-      <h2>📝 Mini Quiz NIRD</h2>
+      <h2>Mini Quiz NIRD</h2>
       <p>{questions[currentIndex].question}</p>
       {questions[currentIndex].options.map((opt, i) => (
         <button key={i} onClick={() => handleAnswer(opt)} className='quiz-option'>{opt}</button>
