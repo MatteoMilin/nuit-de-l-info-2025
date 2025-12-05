@@ -1,32 +1,28 @@
 import { useState } from 'react';
-import viteLogo from '/vite.svg';
-import reactLogo from '../assets/react.svg';
+import ClashRoyaleDeckCaptcha from '../components/ClashRoyaleDeckCaptcha';
 
 export const HomePage = () => {
-  const [count, setCount] = useState(0);
+  const [isVerified, setIsVerified] = useState(false);
+
+  if (!isVerified) {
+    return (
+      <ClashRoyaleDeckCaptcha
+        onSuccess={() => setIsVerified(true)}
+        onError={(error) => console.error('Captcha error:', error)}
+      />
+    );
+  }
 
   return (
-    <>
-      <div>
-        <a href='https://vite.dev' target='_blank' rel='noopener'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank' rel='noopener'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button type='button' onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className='app-container'>
+      <div className='success-screen'>
+        <h1>Bienvenue, Champion !</h1>
+        <p>Tu as prouvé ta valeur sur le terrain de bataille.</p>
+        <p>Accès autorisé</p>
+        <button type='button' onClick={() => setIsVerified(false)} className='retry-button'>
+          Recommencer
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 };
