@@ -36,6 +36,10 @@ Nous avons créé plusieurs défis pour rendre l'expérience interactive et amus
 1. Clonez le dépôt :  
 ```bash
 git clone <repo>
+```
+
+2. Tester :  
+```bash
 npm run dev:server  # server
 npm run dev         # client
-
+```
