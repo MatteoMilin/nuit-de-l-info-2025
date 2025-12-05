@@ -10,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
+        <Route index path='/snake' element={<Snake />} />
         <Route index element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/become" element={<BecomePage />} />
