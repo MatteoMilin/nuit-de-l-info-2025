@@ -4,7 +4,7 @@ import '../style/Header.css';
 export function Header() {
   return (
     <header className="retro-header">
-      <div className="retro-title">My Retro App</div>
+      <div className="retro-title">TechnoFut</div>
 
       <nav className="retro-nav">
         <Link to="/">Accueil</Link>

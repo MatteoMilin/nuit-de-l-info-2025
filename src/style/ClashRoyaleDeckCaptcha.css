@@ -19,26 +19,26 @@
   background: radial-gradient(circle at 20% -10%, rgba(255, 110, 199, 0.25), transparent 40%),
     radial-gradient(circle at 80% 0%, rgba(78, 240, 225, 0.25), transparent 45%),
     linear-gradient(135deg, #05060f 0%, #151937 60%, #070913 100%);
+  image-rendering: pixelated;
 }
 
 .clash-deck-captcha-card {
-  width: min(760px, 100%);
-  border-radius: 28px;
-  padding: 40px;
-  background: var(--glass);
-  border: 1px solid var(--card-border);
-  box-shadow: 0 25px 80px rgba(5, 6, 15, 0.9);
-  backdrop-filter: blur(30px);
-  color: var(--text-primary);
-  animation: elevate 0.6s ease-out;
-  max-height: 90vh;
-  overflow-y: auto;
+    width: min(760px, 100%);
+    border-radius: 0;
+    padding: 40px;
+    background: var(--glass);
+    border: 1px solid var(--card-border);
+    box-shadow: none;
+    color: var(--text-primary);
+    animation: elevate 0.6s steps(1) ease-out;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes elevate {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.97);
+    transform: translateY(2px) scale(1);
   }
   to {
     opacity: 1;
@@ -61,11 +61,11 @@
 .clash-deck-captcha-header p {
   margin: 10px 0 0 0;
   color: var(--text-muted);
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .clash-deck-captcha-instructions {
-  border-radius: 18px;
+  border-radius: 0px;
   padding: 20px 24px;
   margin-bottom: 28px;
   background: linear-gradient(120deg, rgba(140, 91, 255, 0.15), rgba(78, 240, 225, 0.05));
@@ -84,7 +84,7 @@
 }
 
 .clash-deck-captcha-instructions li {
-  margin: 6px 0;
+  margin: 4px 0;
 }
 
 .clash-deck-player-info {
@@ -112,13 +112,13 @@
 .clash-deck-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 16px;
+  gap: 8px;
   margin-bottom: 28px;
 }
 
 .clash-deck-card {
   position: relative;
-  border-radius: 18px;
+  border-radius: 0px;
   padding: 18px 14px 16px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -212,18 +212,18 @@
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 8px;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .clash-deck-captcha-hint {
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .clash-deck-captcha-input {
   width: 100%;
   padding: 16px 18px;
-  border-radius: 14px;
+  border-radius: 0px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(7, 8, 20, 0.8);
   color: var(--text-primary);
@@ -276,9 +276,9 @@
 .clash-deck-captcha-button {
   width: 100%;
   padding: 16px 26px;
-  border-radius: 16px;
+  border-radius: 0px;
   border: none;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
