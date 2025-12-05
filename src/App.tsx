@@ -1,12 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Header } from './components/Header';
 import { HomePage } from './pages/Home';
+import { AboutPage } from './pages/About';
+import { BecomePage } from './pages/Become';
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
+        <Route index path='/snake' element={<Snake />} />
         <Route index element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/become" element={<BecomePage />} />
       </Routes>
     </BrowserRouter>
   );
