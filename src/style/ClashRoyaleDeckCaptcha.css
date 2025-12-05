@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 :root {
   --bg-primary: #05060f;
   --bg-secondary: #111433;
@@ -10,10 +8,6 @@
   --text-muted: #a2a5c2;
   --card-border: rgba(255, 255, 255, 0.12);
   --glass: rgba(10, 12, 32, 0.75);
-}
-
-body {
-  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
 }
 
 .clash-deck-captcha-container {

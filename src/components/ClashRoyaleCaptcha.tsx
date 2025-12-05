@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { VerifyWinResponse } from '../types/clash-royale';
-import './ClashRoyaleCaptcha.css';
+import '../style/ClashRoyaleCaptcha.css';
 
 interface ClashRoyaleCaptchaProps {
   onSuccess: () => void;

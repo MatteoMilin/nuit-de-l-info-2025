@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { VerifyWinResponse } from '../types/clash-royale';
-import './ClashRoyaleDeckCaptcha.css';
+import '../style/ClashRoyaleDeckCaptcha.css';
 
 interface Card {
   name: string;
