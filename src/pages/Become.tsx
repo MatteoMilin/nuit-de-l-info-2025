@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import '../style/Generic.css';
 
 export function BecomePage() {
   useEffect(() => {
-    const targets = document.querySelectorAll("p, li");
+    const targets = document.querySelectorAll('p, li');
 
-    targets.forEach(el => {
+    targets.forEach((el) => {
       transformTextNode(el);
     });
 
@@ -24,19 +24,19 @@ export function BecomePage() {
         textNodes.push(node);
       }
 
-      textNodes.forEach(textNode => {
+      textNodes.forEach((textNode) => {
         const text = textNode.textContent;
-        if (!text.includes("s")) return;
+        if (!text.includes('s')) return;
 
         const fragment = document.createDocumentFragment();
         const parts = text.split(/(s)/g);
 
-        parts.forEach(part => {
-          if (part === "s") {
-            const link = document.createElement("a");
-            link.href = "/snake";
-            link.textContent = "s";
-            link.style.all = "unset";
+        parts.forEach((part) => {
+          if (part === 's') {
+            const link = document.createElement('a');
+            link.href = '/snake';
+            link.textContent = 's';
+            link.style.all = 'unset';
 
             fragment.appendChild(link);
           } else {
@@ -49,28 +49,30 @@ export function BecomePage() {
     }
   }, []);
   return (
-    <div className="container">
-      <h1 className="title">Devenir un village techno-gaulois</h1>
+    <div className='container'>
+      <h1 className='title'>Devenir un village techno-gaulois</h1>
 
-      <p className="text">
-        Un établissement n'a pas besoin de tout changer d'un coup :
-        il peut avancer par petits pas, comme dans un jeu de rôle progressif.
+      <p className='text'>
+        Un établissement n'a pas besoin de tout changer d'un coup : il peut
+        avancer par petits pas, comme dans un jeu de rôle progressif.
       </p>
 
-      <p className="text">Voici quelques étapes :</p>
+      <p className='text'>Voici quelques étapes :</p>
 
-      <ul className="list">
+      <ul className='list'>
         <li>
-          Installer Linux sur un parc d'ordinateurs en fin de vie pour leur redonner
-          5 à 10 ans de durée supplémentaire.
+          Installer Linux sur un parc d'ordinateurs en fin de vie pour leur
+          redonner 5 à 10 ans de durée supplémentaire.
         </li>
 
         <li>
-          Remplacer progressivement les logiciels propriétaires par des alternatives libres.
+          Remplacer progressivement les logiciels propriétaires par des
+          alternatives libres.
         </li>
 
         <li>
-          Créer une équipe “Techno-gauloise” : élèves + profs + techs + direction.
+          Créer une équipe “Techno-gauloise” : élèves + profs + techs +
+          direction.
         </li>
 
         <li>
@@ -82,9 +84,8 @@ export function BecomePage() {
         </li>
       </ul>
 
-      <p className="text">
-        Chaque pas compte.
-        Chaque action renforce le village.
+      <p className='text'>
+        Chaque pas compte. Chaque action renforce le village.
       </p>
     </div>
   );

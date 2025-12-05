@@ -33,7 +33,9 @@ export default function ClashRoyaleDeckCaptcha({
   const [error, setError] = useState('');
   const [challengeDeck, setChallengeDeck] = useState<Card[] | null>(null);
   const [playerName, setPlayerName] = useState('');
-  const [step, setStep] = useState<'enter-tag' | 'show-deck' | 'verify'>('enter-tag');
+  const [step, setStep] = useState<'enter-tag' | 'show-deck' | 'verify'>(
+    'enter-tag'
+  );
 
   const handleLoadDeck = async () => {
     if (!playerTag.trim()) {
@@ -120,16 +122,16 @@ export default function ClashRoyaleDeckCaptcha({
   };
 
   return (
-    <div className="clash-deck-captcha-container">
-      <div className="clash-deck-captcha-card">
-        <div className="clash-deck-captcha-header">
+    <div className='clash-deck-captcha-container'>
+      <div className='clash-deck-captcha-card'>
+        <div className='clash-deck-captcha-header'>
           <h2>Clash Royale Deck Challenge</h2>
           <p>Prove you're a champion by winning with our special deck!</p>
         </div>
 
         {step === 'enter-tag' && (
           <>
-            <div className="clash-deck-captcha-instructions">
+            <div className='clash-deck-captcha-instructions'>
               <ol>
                 <li>Enter your Player Tag</li>
                 <li>We'll generate a custom deck from your cards</li>
@@ -138,39 +140,37 @@ export default function ClashRoyaleDeckCaptcha({
               </ol>
             </div>
 
-            <div className="clash-deck-captcha-input-group">
-              <label htmlFor="playerTag">
+            <div className='clash-deck-captcha-input-group'>
+              <label htmlFor='playerTag'>
                 Player Tag
-                <span className="clash-deck-captcha-hint">
+                <span className='clash-deck-captcha-hint'>
                   (Find it in your profile, e.g., #8L9Y2JQV)
                 </span>
               </label>
               <input
-                id="playerTag"
-                type="text"
+                id='playerTag'
+                type='text'
                 value={playerTag}
                 onChange={(e) => setPlayerTag(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="#YOUR_TAG"
+                placeholder='#YOUR_TAG'
                 disabled={loadingDeck}
-                className="clash-deck-captcha-input"
+                className='clash-deck-captcha-input'
               />
             </div>
 
             {error && (
-              <div className="clash-deck-captcha-message error">
-                {error}
-              </div>
+              <div className='clash-deck-captcha-message error'>{error}</div>
             )}
 
             <button
               onClick={handleLoadDeck}
               disabled={loadingDeck || !playerTag.trim()}
-              className="clash-deck-captcha-button"
+              className='clash-deck-captcha-button'
             >
               {loadingDeck ? (
                 <>
-                  <span className="spinner"></span>
+                  <span className='spinner'></span>
                   Loading your cards...
                 </>
               ) : (
@@ -182,25 +182,26 @@ export default function ClashRoyaleDeckCaptcha({
 
         {step === 'show-deck' && challengeDeck && (
           <>
-            <div className="clash-deck-player-info">
+            <div className='clash-deck-player-info'>
               <h3>👤 {playerName}</h3>
               <p>Your Challenge Deck (8 cards):</p>
             </div>
 
-            <div className="clash-deck-cards-grid">
+            <div className='clash-deck-cards-grid'>
               {challengeDeck.map((card, index) => (
-                <div key={index} className={`clash-deck-card rarity-${card.rarity?.toLowerCase() || 'common'}`}>
-                  {card.iconUrl && (
-                    <img src={card.iconUrl} alt={card.name} />
-                  )}
-                  <div className="clash-deck-card-info">
-                    <span className="card-name">{card.name}</span>
-                    <div className="card-details">
+                <div
+                  key={index}
+                  className={`clash-deck-card rarity-${card.rarity?.toLowerCase() || 'common'}`}
+                >
+                  {card.iconUrl && <img src={card.iconUrl} alt={card.name} />}
+                  <div className='clash-deck-card-info'>
+                    <span className='card-name'>{card.name}</span>
+                    <div className='card-details'>
                       {card.level && (
-                        <span className="card-level">Lvl {card.level}</span>
+                        <span className='card-level'>Lvl {card.level}</span>
                       )}
                       {card.rarity && (
-                        <span className="card-rarity">{card.rarity}</span>
+                        <span className='card-rarity'>{card.rarity}</span>
                       )}
                     </div>
                   </div>
@@ -208,8 +209,10 @@ export default function ClashRoyaleDeckCaptcha({
               ))}
             </div>
 
-            <div className="clash-deck-captcha-instructions challenge">
-              <p><strong>⚔️ Your Mission:</strong></p>
+            <div className='clash-deck-captcha-instructions challenge'>
+              <p>
+                <strong>⚔️ Your Mission:</strong>
+              </p>
               <ol>
                 <li>Copy this EXACT deck in Clash Royale</li>
                 <li>Play a battle (any mode)</li>
@@ -219,21 +222,19 @@ export default function ClashRoyaleDeckCaptcha({
             </div>
 
             {error && (
-              <div className="clash-deck-captcha-message error">
-                {error}
-              </div>
+              <div className='clash-deck-captcha-message error'>{error}</div>
             )}
 
             {message && (
-              <div className="clash-deck-captcha-message success">
+              <div className='clash-deck-captcha-message success'>
                 {message}
               </div>
             )}
 
-            <div className="clash-deck-button-group">
+            <div className='clash-deck-button-group'>
               <button
                 onClick={() => setStep('enter-tag')}
-                className="clash-deck-captcha-button secondary"
+                className='clash-deck-captcha-button secondary'
                 disabled={loading}
               >
                 Change Deck
@@ -241,11 +242,11 @@ export default function ClashRoyaleDeckCaptcha({
               <button
                 onClick={handleVerify}
                 disabled={loading}
-                className="clash-deck-captcha-button"
+                className='clash-deck-captcha-button'
               >
                 {loading ? (
                   <>
-                    <span className="spinner"></span>
+                    <span className='spinner'></span>
                     Verifying...
                   </>
                 ) : (
@@ -256,13 +257,13 @@ export default function ClashRoyaleDeckCaptcha({
           </>
         )}
 
-        <div className="clash-deck-captcha-footer">
+        <div className='clash-deck-captcha-footer'>
           <p>
             Don't have Clash Royale?{' '}
             <a
-              href="https://clashroyale.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href='https://clashroyale.com'
+              target='_blank'
+              rel='noopener noreferrer'
             >
               Download it here
             </a>

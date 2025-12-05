@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface CaptchaContextType {
   isCaptchaVerified: boolean;
@@ -31,7 +31,9 @@ export function CaptchaProvider({ children }: { children: ReactNode }) {
   });
 
   return (
-    <CaptchaContext.Provider value={{ isCaptchaVerified, verifyCaptcha, resetCaptcha }}>
+    <CaptchaContext.Provider
+      value={{ isCaptchaVerified, verifyCaptcha, resetCaptcha }}
+    >
       {children}
     </CaptchaContext.Provider>
   );

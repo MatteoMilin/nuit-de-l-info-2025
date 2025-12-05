@@ -71,14 +71,14 @@ export default function ClashRoyaleCaptcha({
   };
 
   return (
-    <div className="clash-captcha-container">
-      <div className="clash-captcha-card">
-        <div className="clash-captcha-header">
+    <div className='clash-captcha-container'>
+      <div className='clash-captcha-card'>
+        <div className='clash-captcha-header'>
           <h2>Clash Royale Captcha</h2>
           <p>Prove you're a champion by winning a battle!</p>
         </div>
 
-        <div className="clash-captcha-instructions">
+        <div className='clash-captcha-instructions'>
           <ol>
             <li>Open Clash Royale</li>
             <li>Win a battle (any game mode)</li>
@@ -87,45 +87,39 @@ export default function ClashRoyaleCaptcha({
           </ol>
         </div>
 
-        <div className="clash-captcha-input-group">
-          <label htmlFor="playerTag">
+        <div className='clash-captcha-input-group'>
+          <label htmlFor='playerTag'>
             Player Tag
-            <span className="clash-captcha-hint">
+            <span className='clash-captcha-hint'>
               (Find it in your profile, e.g., #8L9Y2JQV)
             </span>
           </label>
           <input
-            id="playerTag"
-            type="text"
+            id='playerTag'
+            type='text'
             value={playerTag}
             onChange={(e) => setPlayerTag(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="#YOUR_TAG"
+            placeholder='#YOUR_TAG'
             disabled={loading}
-            className="clash-captcha-input"
+            className='clash-captcha-input'
           />
         </div>
 
-        {error && (
-          <div className="clash-captcha-message error">
-            {error}
-          </div>
-        )}
+        {error && <div className='clash-captcha-message error'>{error}</div>}
 
         {message && (
-          <div className="clash-captcha-message success">
-            {message}
-          </div>
+          <div className='clash-captcha-message success'>{message}</div>
         )}
 
         <button
           onClick={handleVerify}
           disabled={loading || !playerTag.trim()}
-          className="clash-captcha-button"
+          className='clash-captcha-button'
         >
           {loading ? (
             <>
-              <span className="spinner"></span>
+              <span className='spinner'></span>
               Verifying...
             </>
           ) : (
@@ -133,13 +127,13 @@ export default function ClashRoyaleCaptcha({
           )}
         </button>
 
-        <div className="clash-captcha-footer">
+        <div className='clash-captcha-footer'>
           <p>
             Don't have Clash Royale?{' '}
             <a
-              href="https://clashroyale.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href='https://clashroyale.com'
+              target='_blank'
+              rel='noopener noreferrer'
             >
               Download it here
             </a>
