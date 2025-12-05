@@ -74,10 +74,12 @@ const SECRET_SEQUENCE = ['C', 'E', 'G', 'B', 'C2', 'E2'];
 export const MusicalLogin = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [userSequence, setUserSequence] = useState<SequenceEntry[]>([]);
     const [isPlaying, setIsPlaying] = useState<string | null>(null);
     const [attempts, setAttempts] = useState(0);
     const [cursorPosition, setCursorPosition] = useState<number>(0);
+    const [lastUsernameUpdate, setLastUsernameUpdate] = useState<number>(0);
 
     const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -87,6 +89,27 @@ export const MusicalLogin = () => {
             document.body.classList.remove('body2');
         };
     }, []);
+
+    const handleUsernameChange = (value: string) => {
+        const now = Date.now();
+        if (now - lastUsernameUpdate < 1000) {
+            setUsername('');
+            setLastUsernameUpdate(now);
+            return;
+        }
+
+        setUsername(value);
+        setLastUsernameUpdate(now);
+    };
+
+    const handleEmailChange = (value: string) => {
+        const proceed = window.confirm('Êtes-vous sûr de vouloir modifier votre email ?');
+        if (!proceed) {
+            return;
+        }
+
+        setEmail(value);
+    };
 
     const getAudioContext = useCallback(() => {
         const globalWindow = window as ExtendedWindow;
@@ -190,18 +213,45 @@ export const MusicalLogin = () => {
         }
     };
 
-    const playSuccessSound = () => {
+    const playSuccessSound = useCallback(() => {
         SECRET_SEQUENCE.forEach((noteKey, index) => {
             const note = notes.find((n) => n.key === noteKey);
             if (note) {
                 setTimeout(() => playNote(note.frequency, 0.2), index * 150);
             }
         });
-    };
+    }, [playNote]);
 
     const playErrorSound = () => {
         playNote(200, 0.5);
     };
+
+    useEffect(() => {
+        const context = getAudioContext();
+        if (!context) {
+            return;
+        }
+
+        if (context.state === 'suspended') {
+            const handlePointerDown = () => {
+                const ctx = getAudioContext();
+                if (!ctx) {
+                    return;
+                }
+
+                if (typeof ctx.resume === 'function') {
+                    ctx.resume().catch(() => undefined);
+                }
+
+                document.removeEventListener('pointerdown', handlePointerDown);
+            };
+
+            document.addEventListener('pointerdown', handlePointerDown);
+
+            return () =>
+                document.removeEventListener('pointerdown', handlePointerDown);
+        }
+    }, [getAudioContext]);
 
     useEffect(() => {
         const handleKeyPress = (e: KeyboardEvent) => {
@@ -228,6 +278,7 @@ export const MusicalLogin = () => {
                 setCursorPosition(cursorPosition + 1);
             }
         };
+
         window.addEventListener('keydown', handleKeyPress);
         return () => window.removeEventListener('keydown', handleKeyPress);
     }, [canValidate, userSequence, cursorPosition]);
@@ -257,10 +308,27 @@ export const MusicalLogin = () => {
                             id='username'
                             type='text'
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={(e) => handleUsernameChange(e.target.value)}
                             placeholder='Pseudo'
                             autoComplete='username'
                             className='w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-200'
+                        />
+                    </div>
+                    <div className='flex flex-col gap-4'>
+                        <label
+                            htmlFor='email'
+                            className='text-sm font-medium text-slate-600'
+                        >
+                            Adresse e-mail
+                        </label>
+                        <input
+                            id='email'
+                            type='email'
+                            value={email}
+                            onChange={(e) => handleEmailChange(e.target.value)}
+                            placeholder='exemple@domain.tld'
+                            autoComplete='email'
+                            className='w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-200'
                         />
                     </div>
 
@@ -268,6 +336,13 @@ export const MusicalLogin = () => {
                         <span className='text-sm font-medium text-slate-600'>
                             Mot de passe musical
                         </span>
+                        <button
+                            type='button'
+                            onClick={playSuccessSound}
+                            className='self-start rounded-lg border border-slate-900 bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300'
+                        >
+                            Indice mot de passe (écouter la mélodie)
+                        </button>
                         <div className='min-h-[72px] rounded-xl border border-slate-200 bg-slate-50 px-4 py-5'>
                             {userSequence.length === 0 ? (
                                 <p className='text-center text-sm text-slate-500'>
