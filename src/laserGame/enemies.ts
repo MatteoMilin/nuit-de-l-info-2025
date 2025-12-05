@@ -31,7 +31,7 @@ const shootAtPlayer = (enemy: Enemy) => {
   const deltaX = laserState.mouseX - originX;
   const deltaY = laserState.mouseY - originY;
   const distance = Math.max(1, Math.hypot(deltaX, deltaY));
-  const speed = 7;
+  const speed = 5;
   const velocityX = (deltaX / distance) * speed;
   const velocityY = (deltaY / distance) * speed;
 
@@ -58,7 +58,7 @@ const shootAtPlayer = (enemy: Enemy) => {
     );
 
     if (distToCursor < 45) {
-      damagePlayer(5);
+      damagePlayer(3);
       flashDamageOverlay();
       bullet.remove();
       activeBullets.delete(bullet);
@@ -130,20 +130,20 @@ const spawnEnemy = () => {
 
   const enemy: Enemy = {
     element: enemyElement,
-    health: 40,
+    health: 25,
     shootInterval: 0,
     moveInterval: 0,
   };
 
   const velocity = {
-    x: (Math.random() - 0.5) * 2,
-    y: (Math.random() - 0.5) * 2,
+    x: (Math.random() - 0.5) * 1.2,
+    y: (Math.random() - 0.5) * 1.2,
   };
 
   const moveEnemy = () => {
     const rect = enemyElement.getBoundingClientRect();
-    let nextX = rect.left + velocity.x * 6;
-    let nextY = rect.top + velocity.y * 6;
+    let nextX = rect.left + velocity.x * 4;
+    let nextY = rect.top + velocity.y * 4;
 
     if (nextX <= 0 || nextX >= window.innerWidth - ENEMY_SIZE) {
       velocity.x *= -1;
@@ -162,19 +162,19 @@ const spawnEnemy = () => {
   enemy.moveInterval = window.setInterval(moveEnemy, 20);
   enemy.shootInterval = window.setInterval(
     () => shootAtPlayer(enemy),
-    1800 + Math.random() * 600
+    2400 + Math.random() * 900
   );
   enemyElement.addEventListener('click', handleEnemyClick(enemy));
 
   laserState.enemies.push(enemy);
 };
 
-export const spawnEnemyWave = (count = 5) => {
+export const spawnEnemyWave = (count = 4) => {
   for (let i = 0; i < count; i += 1) {
     const timeout = window.setTimeout(() => {
       if (!laserState.active) return;
       spawnEnemy();
-    }, i * 700);
+    }, i * 1200);
     enemySpawnTimeouts.push(timeout);
   }
 };
