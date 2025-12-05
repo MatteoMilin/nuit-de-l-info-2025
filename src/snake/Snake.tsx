@@ -1,30 +1,34 @@
 import { useEffect, useState, useCallback } from "react"
 
+type Position = [number, number];
+type CellType = 'head' | 'body' | 'food' | 'empty';
+
 export default function Snake() {
     const SIZE = 15;
     const SPEED = 100;
 
-    const [snake, setSnake] = useState([[7, 7]]);
-    const [food, setFood] = useState([3, 3]);
-    const [direction, setDirection] = useState([0, 1]);
-    const [nextDirection, setNextDirection] = useState([0, 1]);
-    const [gameOver, setGameOver] = useState(false);
-    const [score, setScore] = useState(0);
+    const [snake, setSnake] = useState<Position[]>([[7, 7]]);
+    const [food, setFood] = useState<Position>([3, 3]);
+    const [direction, setDirection] = useState<Position>([0, 1]);
+    const [nextDirection, setNextDirection] = useState<Position>([0, 1]);
+    const [gameOver, setGameOver] = useState<boolean>(false);
+    const [score, setScore] = useState<number>(0);
+    const [directionChanged, setDirectionChanged] = useState<boolean>(false);
 
-    const generateFood = useCallback((currentSnake) => {
-        let newFood;
+    const generateFood = useCallback((currentSnake: Position[]): Position => {
+        let newFood: Position;
         do {
             newFood = [Math.floor(Math.random() * SIZE), Math.floor(Math.random() * SIZE)];
         } while (currentSnake.some(seg => seg[0] === newFood[0] && seg[1] === newFood[1]));
         return newFood;
     }, []);
 
-    const isCollision = (head, body) => {
+    const isCollision = (head: Position, body: Position[]): boolean => {
         return head[0] < 0 || head[0] >= SIZE || head[1] < 0 || head[1] >= SIZE ||
             body.some(seg => seg[0] === head[0] && seg[1] === head[1]);
     };
 
-    const getCellType = useCallback((row, col) => {
+    const getCellType = useCallback((row: number, col: number): CellType => {
         if (snake[0][0] === row && snake[0][1] === col) return 'head';
         if (snake.some(seg => seg[0] === row && seg[1] === col)) return 'body';
         if (food[0] === row && food[1] === col) return 'food';
@@ -32,11 +36,11 @@ export default function Snake() {
     }, [snake, food]);
 
     useEffect(() => {
-        const handleKeyPress = (e) => {
-            if (gameOver || !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (gameOver || directionChanged || !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) return;
             e.preventDefault();
 
-            const moves = {
+            const moves: Record<string, Position> = {
                 ArrowUp: [-1, 0],
                 ArrowDown: [1, 0],
                 ArrowLeft: [0, -1],
@@ -45,22 +49,26 @@ export default function Snake() {
 
             const newDir = moves[e.key];
             const isOpposite = direction[0] === -newDir[0] && direction[1] === -newDir[1];
-            if (!isOpposite) setNextDirection(newDir);
+            if (!isOpposite) {
+                setNextDirection(newDir);
+                setDirectionChanged(true);
+            }
         };
 
         window.addEventListener('keydown', handleKeyPress);
         return () => window.removeEventListener('keydown', handleKeyPress);
-    }, [gameOver, direction]);
+    }, [gameOver, direction, directionChanged]);
 
     useEffect(() => {
         if (gameOver) return;
 
         const interval = setInterval(() => {
             setDirection(nextDirection);
+            setDirectionChanged(false);
 
             setSnake(prev => {
                 const head = prev[0];
-                const newHead = [head[0] + nextDirection[0], head[1] + nextDirection[1]];
+                const newHead: Position = [head[0] + nextDirection[0], head[1] + nextDirection[1]];
 
                 if (isCollision(newHead, prev)) {
                     setGameOver(true);
@@ -83,16 +91,17 @@ export default function Snake() {
         return () => clearInterval(interval);
     }, [nextDirection, food, gameOver, generateFood]);
 
-    const resetGame = () => {
+    const resetGame = (): void => {
         setSnake([[7, 7]]);
         setFood([3, 3]);
         setDirection([0, 1]);
         setNextDirection([0, 1]);
         setGameOver(false);
         setScore(0);
+        setDirectionChanged(false);
     };
 
-    const styles = {
+    const styles: Record<string, React.CSSProperties> = {
         container: { fontFamily: '"Courier New", monospace' },
         header: {
             background: '#000',
@@ -126,7 +135,7 @@ export default function Snake() {
         footer: { color: '#0a0', textShadow: '0 0 5px #0a0' }
     };
 
-    const cellStyles = {
+    const cellStyles: Record<CellType, string> = {
         head: 'border-green-300 animate-pulse',
         body: 'border-green-700',
         food: 'border-red-400 animate-pulse',
