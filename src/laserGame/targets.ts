@@ -122,9 +122,14 @@ export const attachLaserTargets = () => {
 
 export const cleanupTargets = () => {
   targetHandlers.forEach((handler, element) => {
+    const targetState = element.dataset.laserTarget;
     element.removeEventListener('click', handler);
     element.classList.remove('laser-target');
-    if (element.dataset.laserTarget) {
+    if (targetState === 'destroyed') {
+      element.style.visibility = '';
+      element.style.pointerEvents = '';
+    }
+    if (targetState) {
       delete element.dataset.laserTarget;
     }
   });
